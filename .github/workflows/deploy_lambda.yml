@@ -28,6 +28,7 @@ jobs:
 
       - name: Build Lambda function using SAM CLI
         run: |
+          cd sam_lambda/CouchQuest
           sam build
 
   deploy:
@@ -51,6 +52,7 @@ jobs:
 
       - name: Deploy Lambda with SAM CLI
         run: |
+          cd sam_lambda/CouchQuest
           sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM
 
       - name: Output deployed Lambda function URL
