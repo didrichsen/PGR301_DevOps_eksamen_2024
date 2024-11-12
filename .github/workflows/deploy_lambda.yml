@@ -27,9 +27,19 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Lambda function using SAM CLI
+        id: sam_build
         run: |
           cd sam_lambda/CouchQuest
           sam build
+
+      - name: Check if build output exists
+        id: check_build
+        run: |
+          cd sam_lambda/CouchQuest
+          if [ ! -d ".aws-sam/build" ]; then
+            echo "No build artifacts found. Skipping deployment."
+            echo "skip_deploy=true" >> $GITHUB_ENV
+          fi
 
   deploy:
     name: Deploy Lambda function to AWS
@@ -38,13 +48,14 @@ jobs:
     environment:
       name: production
       url: ${{ steps.deploy.outputs.web_url }}
+    if: env.skip_deploy != 'true'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
