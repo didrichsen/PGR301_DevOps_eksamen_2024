@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM image generation Lambda with API Gateway
+
+Resources:
+  ImageGenerationFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  S3AccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: S3AccessPolicy
+      Roles:
+        - !Ref ImageGenerationFunctionRole
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+            Resource: arn:aws:s3:::pgr301-couch-explorers/40/*
+
+  BedrockInvokePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: BedrockInvokePolicy
+      Roles:
+        - !Ref ImageGenerationFunctionRole
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: bedrock:InvokeModel
+            Resource: "*"
+
+  SSMParameterAccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: SSMParameterAccessPolicy
+      Roles:
+        - !Ref ImageGenerationFunctionRole
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - ssm:GetParameter
+            Resource: !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/image-generation/40/bucket-name'
+
+  ImageGenerationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: generate_image_lambda_function.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Timeout: 300
+      MemorySize: 1024
+      Role: !GetAtt ImageGenerationFunctionRole.Arn
+      Environment:
+        Variables:
+          BUCKET_NAME: !Sub '{{resolve:ssm:/image-generation/40/bucket-name}}'
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /generate-image
+            Method: post
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generate-image/"
