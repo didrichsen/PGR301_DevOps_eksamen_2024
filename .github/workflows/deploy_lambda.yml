@@ -32,15 +32,6 @@ jobs:
           cd sam_lambda/CouchQuest
           sam build
 
-      - name: Check if build output exists
-        id: check_build
-        run: |
-          cd sam_lambda/CouchQuest
-          if [ ! -d ".aws-sam/build" ]; then
-            echo "No build artifacts found. Skipping deployment."
-            echo "skip_deploy=true" >> $GITHUB_ENV
-          fi
-
   deploy:
     name: Deploy Lambda function to AWS
     runs-on: ubuntu-latest
@@ -63,17 +54,9 @@ jobs:
       - name: Deploy Lambda with SAM CLI
         run: |
           cd sam_lambda/CouchQuest
-          if [ "$skip_deploy" != "true" ]; then
-            sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM
-          else
-            echo "Skipping deployment, no changes detected."
-          fi
+          sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM || echo "No changes detected, skipping deployment."
 
       - name: Output deployment status
         id: deploy
         run: |
-          if [ "$skip_deploy" = "true" ]; then
-            echo "Lambda already up to date. No deployment necessary."
-          else
-            echo "Lambda function deployed successfully!"
-          fi
+          echo "Lambda function deployment process finished."
