@@ -60,13 +60,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Skip deployment if no build artifacts
-        if: ${{ env.skip_deploy != 'true' }}
+      - name: Deploy Lambda with SAM CLI
         run: |
           cd sam_lambda/CouchQuest
-          sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM
+          if [ "$skip_deploy" != "true" ]; then
+            sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM
+          else
+            echo "Skipping deployment, no changes detected."
+          fi
 
-      - name: Output deployed Lambda function URL
+      - name: Output deployment status
         id: deploy
         run: |
-          echo "Lambda function deployed successfully!"
+          if [ "$skip_deploy" = "true" ]; then
+            echo "Lambda already up to date. No deployment necessary."
+          else
+            echo "Lambda function deployed successfully!"
+          fi
