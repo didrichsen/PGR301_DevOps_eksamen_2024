@@ -48,7 +48,6 @@ jobs:
     environment:
       name: production
       url: ${{ steps.deploy.outputs.web_url }}
-    if: env.skip_deploy != 'true'
 
     steps:
       - name: Checkout code
@@ -61,7 +60,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Deploy Lambda with SAM CLI
+      - name: Skip deployment if no build artifacts
+        if: ${{ env.skip_deploy != 'true' }}
         run: |
           cd sam_lambda/CouchQuest
           sam deploy --no-confirm-changeset --stack-name CouchQuest --capabilities CAPABILITY_IAM
