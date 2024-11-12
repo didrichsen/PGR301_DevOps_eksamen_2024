@@ -51,18 +51,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Check if build output exists
-        id: check_build
-        run: |
-          cd sam_lambda/CouchQuest
-          if [ ! -d ".aws-sam/build" ]; then
-            echo "No build artifacts found. Skipping deployment."
-            exit 0
-          fi
-
       - name: Deploy Lambda with SAM CLI
-        id: deploy
         run: |
           cd sam_lambda/CouchQuest
-          sam deploy --no-confirm-changeset --capabilities CAPABILITY_IAM
-          echo "Lambda function deployed successfully!"
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+          echo "Lambda function deployed successfully (or no changes to deploy)."
