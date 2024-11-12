@@ -21,6 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd sam_lambda/CouchQuest
           python -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
