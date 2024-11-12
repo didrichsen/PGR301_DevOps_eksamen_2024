@@ -48,7 +48,7 @@ def lambda_handler(event, context):
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({
-                'message': 'Image generated and uploaded successfully',
+                'message': 'Image generated and uploaded successfully!',
                 'image_path': f"https://{bucket_name}.s3.amazonaws.com/{s3_image_path}"
             })
         }
