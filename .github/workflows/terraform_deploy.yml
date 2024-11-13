@@ -3,14 +3,15 @@ name: Plan and Apply with Terraform
 on:
   push:
     branches:
-      - '*'
+      - '*'  # Trigger on all branches
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
 
     env:
-      TF_LOG: DEBUG
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
     - name: Checkout code
@@ -24,9 +25,6 @@ jobs:
     - name: Terraform Init
       run: terraform init
       working-directory: infra
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     # Terraform Plan (for branches other than main)
     - name: Terraform Plan
@@ -39,6 +37,3 @@ jobs:
       if: github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve
       working-directory: infra
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
