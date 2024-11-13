@@ -1,19 +1,16 @@
-variable "kandidat" {
-  description = "Kandidatnummer eksamen devops 2024"
-  type = string
-  default = "40"
-}
-
 variable "prefix" {
   description = "Prefix for naming resources"
   type        = string
-  default     = "DevOpsEksamen2024-"
+}
+
+variable "kandidat" {
+  description = "Kandidatnummer eksamen devops 2024"
+  type        = string
 }
 
 variable "lambda_source_dir" {
   description = "Path to the directory containing the Lambda function code"
   type        = string
-  default = ""
 }
 
 variable "lambda_function_name" {
