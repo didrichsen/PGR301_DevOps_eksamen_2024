@@ -107,3 +107,5 @@ Thumbs.db
 *.cache
 *.swp
 
+/infra/.terraform/
+/sam_lambda/CouchQuest/__init__.py
