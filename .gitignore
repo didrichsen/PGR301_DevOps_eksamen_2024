@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+java_sqs_client/target/
+
 # C extensions
 *.so
 
@@ -99,7 +101,6 @@ Thumbs.db
 .ipynb_checkpoints
 
 # Logs
-*.log
 
 # Temporary files and caches
 *.tmp
