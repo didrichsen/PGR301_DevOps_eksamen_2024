@@ -28,6 +28,7 @@ jobs:
           
           docker build -t didrichsen/java-sqs-client:0.1-${COMMIT_HASH} .
           docker tag didrichsen/java-sqs-client:0.1-${COMMIT_HASH} didrichsen/java-sqs-client:latest
+        working-directory: java_sqs_client
 
       - name: Push Docker images
         run: |
@@ -35,3 +36,4 @@ jobs:
           
           docker push didrichsen/java-sqs-client:0.1-${COMMIT_HASH}
           docker push didrichsen/java-sqs-client:latest
+        working-directory: java_sqs_client
