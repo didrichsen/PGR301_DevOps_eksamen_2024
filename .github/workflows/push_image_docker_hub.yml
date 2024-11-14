@@ -34,6 +34,6 @@ jobs:
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)
           
-          docker push didrichsen/java-sqs-client:0.1-${COMMIT_HASH}
+          docker push didrichsen/java-sqs-client:${COMMIT_HASH}
           docker push didrichsen/java-sqs-client:latest
         working-directory: java_sqs_client
