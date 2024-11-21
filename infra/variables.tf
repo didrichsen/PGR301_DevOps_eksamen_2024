@@ -21,3 +21,24 @@ variable "lambda_function_name" {
   type        = string
   default     = "my_lambda_function"
 }
+
+locals {
+  dashboard_name = "${var.prefix}${var.kandidat}-Dashboard"
+}
+
+variable "aws_region" {
+  description = "AWS region where the SQS queue is located"
+  default     = "eu-west-1"
+}
+
+variable "threshold" {
+  description = "Threshold for ApproximateAgeOfOldestMessage"
+  type        = number
+  default     = 5
+}
+
+variable "alarm_email" {
+  description = "Email address to send notifications"
+  type        = string
+  default = "simendidrichsen@gmail.com"
+}
