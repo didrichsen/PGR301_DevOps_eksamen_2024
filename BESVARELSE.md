@@ -85,7 +85,7 @@ En ulempe ved å deploye små, uavhengige funksjoner er at de kan være avhengig
 ### Mikrotjenester
 Hver mikrotjeneste kan ha sitt eget repository, som gjør det enklere å sette opp en solid CI/CD-pipeline. Ved å ha all koden for en tjeneste i ett repository, blir det enklere å automatisere tester som dekker hele tjenesten.
 
-Mikrotjenester krever imidlertid mer infrastruktur for å håndtere distribusjon og testing, som kan innebære ekstra kompleksitet. Dette er noe som serverless-plattformer ofte tar seg av, og dermed reduserer den operasjonelle belastningen på DevOps-teamet. Mikrotjenester kan derfor ha en mer krevende oppsettfase, selv om det finnes gode verktøy for å håndtere infrastrukturen.
+Mikrotjenester krever imidlertid mer infrastruktur for å håndtere distribusjon og testing, som kan innebære ekstra kompleksitet. Dette er noe som serverless-plattformer ofte tar seg av. Mikrotjenester kan derfor ha en mer krevende oppsettfase, selv om det finnes gode verktøy for å håndtere infrastrukturen.
 
 ## Observability (overvåkning):
 
@@ -128,14 +128,14 @@ For applikasjoner med varierende trafikkmønstre kan den kontinuerlige driften a
 ## Eierskap og ansvar 
 
 ### Serverless 
-I en serverless-applikasjon kan utviklere fokusere mer på applikasjonslogikk, ettersom mye av infrastrukturen håndteres av cloud-leverandøren. Dette inkluderer oppgaver som administrasjon av servere, oppdateringer og patching, noe som reduserer driftansvaret for utviklingsteamet. Resultatet er at teamet kan bruke mer tid på koding og utvikling av forretningslogikk, mens leverandøren sørger for at infrastrukturen er oppdatert og skalerbar.
+I en serverless-applikasjon FaaS-Applikasjon kan utviklere fokusere mer på applikasjonslogikk, ettersom mye av infrastrukturen håndteres av cloud-leverandøren. Dette inkluderer oppgaver som administrasjon av servere, oppdateringer og patching, noe som reduserer driftansvaret for utviklingsteamet. Resultatet er at teamet kan bruke mer tid på koding og utvikling av forretningslogikk, mens leverandøren sørger for at infrastrukturen er oppdatert og skalerbar.
 
 En utfordring med dette er at teamet blir sterkt avhengig av leverandørens infrastruktur, noe som kan føre til at man låses til en hvis grad til leverandøren. Dette kan gjøre det vanskeligere å feilsøke og få full oversikt over systemet, spesielt når leverandøren håndterer mye av driften i bakgrunnen.
 
 Eierskap til applikasjonen kan også bli fragmentert, da systemet ofte består av mange enkeltfunksjoner. Dette kan gjøre det mer utfordrende å holde oversikt over hvordan ulike funksjoner samhandler og påvirker hverandre.
 
 ### Microservice
-En applikasjon med en mikrotjenestearkitektur plasserer mer av ansvaret for infrastruktur, som patching og serveradministrasjon, på hvert enkelt utviklerteam. Dette gir teamene større kontroll over den underliggende infrastrukturen og reduserer avhengigheten av en spesifikk cloud-leverandør.
+En applikasjon med en mikrotjenestearkitektur plasserer mer av ansvaret for infrastruktur på hvert enkelt utviklerteam, da det har underliggende arkitektur som kan være spesifikk for deres tjeneste. Dette kan gi teamene større kontroll over den underliggende infrastrukturen som igjen kan reduserer avhengigheten av en spesifikk cloud-leverandør.
 
 En mikrotjenestearkitektur kan også gjøre det enklere for utviklere å få tydelig eierskap over tjenestene de jobber med, siden all nødvendig funksjonalitet ofte er samlet i ett repository med et klart skille for hver enkelt tjeneste.
 
