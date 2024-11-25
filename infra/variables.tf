@@ -38,3 +38,9 @@ variable "alarm_email" {
   type        = string
   default = "simendidrichsen@gmail.com"
 }
+
+variable "bucket_name_ssm_parameter" {
+  description = "The name of the SSM parameter containing the bucket name"
+  type        = string
+  default = "/image-generation/40/bucket-name"
+}

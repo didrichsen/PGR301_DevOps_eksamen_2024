@@ -18,3 +18,8 @@ variable "lambda_function_name" {
   type        = string
   default     = "my_lambda_function"
 }
+
+variable "bucket_name_ssm_parameter" {
+  description = "The name of the SSM parameter containing the bucket name"
+  type        = string
+}

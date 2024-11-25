@@ -1,3 +1,3 @@
 data "aws_ssm_parameter" "bucket_name" {
-  name = "/image-generation/40/bucket-name"
+  name = var.bucket_name_ssm_parameter
 }
