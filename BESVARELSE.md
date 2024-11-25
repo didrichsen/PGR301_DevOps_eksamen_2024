@@ -60,6 +60,17 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=XXX -e SQS_QUEUE_UR
 Det er satt opp en, DevOpsEksamen2024-40-sqs-age-alarm, som sender mail til variablen som er lagt inn med en default inn under variables.tf.
 Alarmen går hvis en melding blir liggende lenger enn 5 sekunder.
 
+Alarm utløst:
+
+Email, subject:
+```
+ALARM: "DevOpsEksamen2024-40-sqs-age-alarm" in EU (Ireland)
+```
+Email, body: 
+```
+You are receiving this email because your Amazon CloudWatch Alarm "DevOpsEksamen2024-40-sqs-age-alarm" in the EU (Ireland) region has entered the ALARM state, because "Threshold Crossed: 1 datapoint [8.0 (19/11/24 11:54:00)] was greater than the threshold (5.0)." at "Tuesday 19 November, 2024 11:54:20 UTC".
+```
+
 ## Oppgave 5
 
 ## Automatisering og kontinuerlig levering (CI/CD):
