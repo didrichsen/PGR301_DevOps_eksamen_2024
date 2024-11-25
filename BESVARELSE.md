@@ -18,7 +18,7 @@ API: https://d7s36trw2m.execute-api.eu-west-1.amazonaws.com/Prod/generate-image
 ```
 
 ### b)
-Github actions workflow: https://github.com/didrichsen/PGR301_DevOps_eksamen_2024/actions/runs/11800910514
+Github actions workflow (Build and Deploy Lambda): https://github.com/didrichsen/PGR301_DevOps_eksamen_2024/actions/runs/12006527281
 
 ## Oppgave 2
 
