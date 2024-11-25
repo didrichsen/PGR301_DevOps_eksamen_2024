@@ -31,6 +31,12 @@ Github actions workflow (Build and Deploy Lambda): https://github.com/didrichsen
 - **SQS-kø**  
   https://sqs.eu-west-1.amazonaws.com/244530008913/DevOpsEksamen2024-_40_lambda_queue
 
+```
+aws sqs send-message \
+  --queue-url https://sqs.eu-west-1.amazonaws.com/244530008913/DevOpsEksamen2024-_40_lambda_queue \
+  --message-body '{"prompt":"Show me sitting at a classic Parisian café with the Eiffel Tower in the background, a coffee and croissant on the table. The image should have an old polaroid filter, with soft faded tones and a sunbeam lightly hitting the Eiffel Tower."}';  
+```
+
 ## Oppgave 3
 
 ### Beskrivelse av tagge-strategien for container imagene:

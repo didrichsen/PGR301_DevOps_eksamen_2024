@@ -3,7 +3,7 @@ name: Plan and Apply with Terraform
 on:
   push:
     branches:
-      - '**'  # Trigger on all branches Test
+      - '**'
 
 jobs:
   terraform:
