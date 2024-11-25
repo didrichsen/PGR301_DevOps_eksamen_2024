@@ -5,10 +5,20 @@
 ### a)
 API: https://d7s36trw2m.execute-api.eu-west-1.amazonaws.com/Prod/generate-image
 
+```
+{
+    "prompt":"Show me sitting at a classic Parisian café with the Eiffel Tower in the background, a coffee and croissant on the table. The image should have an old polaroid filter, with soft faded tones and a sunbeam lightly hitting the Eiffel Tower."
+}
+```
+```
+{
+    "message": "Image generated and uploaded successfully!",
+    "image_path": "https://pgr301-couch-explorers.s3.amazonaws.com/40/titan_1281634984.png"
+}
+```
+
 ### b)
 Github actions workflow: https://github.com/didrichsen/PGR301_DevOps_eksamen_2024/actions/runs/11800910514
-
-Gå over de 4 warnings som finnes.
 
 ## Oppgave 2
 
