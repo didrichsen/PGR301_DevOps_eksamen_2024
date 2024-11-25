@@ -1,5 +1,5 @@
 module "lambda_function" {
-  source               = "./lambda_function"  # Path to your lambda_function module
+  source               = "./lambda_function"
   prefix               = var.prefix
   kandidat             = var.kandidat
   lambda_source_dir    = var.lambda_source_dir

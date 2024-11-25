@@ -9,3 +9,7 @@ output "sqs_queue_url" {
 output "lambda_function_name" {
   value = aws_lambda_function.lambda_function.function_name
 }
+
+output "sqs_queue_name" {
+  value = aws_sqs_queue.lambda_queue.name
+}

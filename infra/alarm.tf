@@ -9,7 +9,7 @@ resource "aws_cloudwatch_metric_alarm" "sqs_age_alarm" {
   comparison_operator = "GreaterThanThreshold"
   threshold = var.threshold
   evaluation_periods = 1
-  period = 10
+  period = 60
   statistic = "Maximum"
   alarm_description   = "This alarm triggers when the ApproximateAgeOfOldestMessage for the SQS queue exceeds the threshold"
   alarm_actions = [aws_sns_topic.user_updates.arn]
@@ -23,9 +23,4 @@ resource "aws_sns_topic_subscription" "user_updates_sqs_target" {
   topic_arn = aws_sns_topic.user_updates.arn
   protocol  = "email"
   endpoint  = var.alarm_email
-}
-
-resource "aws_sqs_queue" "lambda_queue" {
-  name = "${var.prefix}_${var.kandidat}_lambda_queue"
-  visibility_timeout_seconds = 60
 }

@@ -22,10 +22,6 @@ variable "lambda_function_name" {
   default     = "my_lambda_function"
 }
 
-locals {
-  dashboard_name = "${var.prefix}${var.kandidat}-Dashboard"
-}
-
 variable "aws_region" {
   description = "AWS region where the SQS queue is located"
   default     = "eu-west-1"
